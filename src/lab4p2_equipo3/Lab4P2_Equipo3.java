@@ -37,46 +37,68 @@ public class Lab4P2_Equipo3 {
                             case 1: {
                                 System.out.println("Ingrese su especie: ");
                                 String especie = read.nextLine();
-                                
-                                while (){
-                                    System.out.println("Ingrese ataque fisico o de estado: ");
+                                int cont = 0;
+                                while (cont < 3){
+                                    System.out.println("""
+                                                       Ingrese su tipo de ataque
+                                                       1. Fisico/Especial
+                                                       2. Estado""");
+                                    int opcion3 = read.nextInt();
+                                    Movimiento [] moves = new Movimiento[4];
                                     switch(opcion3){
                                         case 1:{
                                             read.nextLine();
                                             System.out.println("Ingrese un ataque fisico o especial: ");
                                             String ataque = read.nextLine();
                                             int stat = 1 + rng.nextInt(50);
+                                            FisicoEspecial move = new FisicoEspecial(stat , ataque);
+                                            moves[cont] = move;
                                             break;
                                         }
                                         case 2:{
                                             int opcion4 = 0;
-                                            while (opcion4 != 5){
+                                            
                                                 opcion4 = menuEstado();
                                                 switch (opcion4){
                                                     case 1:{
                                                      
+                                                        Estado move = new Estado("Toxic");
+                                                        moves[cont] = move;
                                                         
                                                         break;
                                                     }
                                                     case 2:{
                                                         
+                                                        Estado move = new Estado("Will-O-Wisp");
+                                                        moves[cont] = move;
                                                         
                                                         break;
                                                     }
                                                     case 3:{
+                                                        
+                                                        Estado move = new Estado("Thunder Wave");
+                                                        moves[cont] = move;
+                                                        
                                                         break;
                                                     }
                                                     case 4:{
+                                                        
+                                                        Estado move = new Estado("Hypnosis");
+                                                        moves[cont] = move;
+                                                        
                                                         break;
                                                     }
-                                                    case 5:{
-                                                        break;
+                                                    default : {
+                                                        
+                                                        System.out.println("Ingreso un valor no valido");
+                                                        
                                                     }
                                                 }
-                                            }
+                                            
                                             break;
                                         }
                                     }
+                                    cont++;
                                 }
                                 break;
                             }
