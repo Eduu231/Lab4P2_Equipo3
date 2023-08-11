@@ -2,7 +2,7 @@ package lab4p2_equipo3;
 
 public class Fisico extends FisicoEspecial {
 
-    public Fisico(int AtkE, int baseAtk, String nombre) {
+    public Fisico( int baseAtk, String nombre) {
         super( baseAtk, nombre);
     }
 
