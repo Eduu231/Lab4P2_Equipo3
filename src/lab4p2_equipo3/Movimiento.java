@@ -17,6 +17,6 @@ public abstract class Movimiento {
         this.nombre = nombre;
     }
     
-    public abstract String accion(Pokemon p);
+    public abstract String accion(Pokemon p , int move);
     
 }
