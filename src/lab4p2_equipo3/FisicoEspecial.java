@@ -23,7 +23,8 @@ public class FisicoEspecial extends Movimiento{
         
         String dmg = "";
         Movimiento m = p.getM()[move];
-        int dmgInt = p.getPtsAtaq() * 2;
+        int atq = ((FisicoEspecial)m).getBaseAtk();
+        int dmgInt = atq * 2;
         dmg = Integer.toString(dmgInt);
         return dmg;
     }
