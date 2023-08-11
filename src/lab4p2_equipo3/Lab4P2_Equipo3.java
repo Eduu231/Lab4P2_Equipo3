@@ -1,20 +1,56 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package lab4p2_equipo3;
 
-/**
- *
- * @author edudi
- */
+import java.util.Scanner;
+
+
 public class Lab4P2_Equipo3 {
 
-    /**
-     * @param args the command line arguments
-     */
+    static Scanner read = new Scanner(System.in);
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+    int opcion = 0;
+    
+    while (opcion !=4){
+        
+        opcion = menuInicial();
+        
+        switch(opcion){
+            case 1:{
+                
+                break;
+            }
+            case 2:{
+                
+                break;
+            }
+            case 3:{
+                
+                break;
+            }
+            case 4:{
+                System.out.println("Salir");
+                break;
+            }
+        }
+    }
+        
+        
+        
+    }
+    private static int menuInicial(){
+        int op = 0;
+        
+        System.out.println("""
+                           1- Registrar Entrenador
+                           2- Battle Factory
+                           3- Capturar/Entrenar
+                           4- Salir
+                           """);
+        
+        op = read.nextInt();
+        
+        return op;
     }
     
 }
