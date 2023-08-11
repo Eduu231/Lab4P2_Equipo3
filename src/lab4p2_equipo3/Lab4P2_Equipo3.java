@@ -18,7 +18,7 @@ public class Lab4P2_Equipo3 {
 
         int opcion = 0;
 
-        while (opcion != 4) {
+        while (opcion != 5) {
             int cont2 = 0;
             opcion = menuInicial();
 
@@ -72,9 +72,11 @@ public class Lab4P2_Equipo3 {
                                     while (cont < 4) {
                                         
                                         System.out.println("Seleccione 4 movimientos");
+                                        printMoves();
+                                        int opcionMoves = read.nextInt();
+                                        moves[cont] = movesA.get(opcionMoves);
                                         
                                         
-                                        break;
                                     }//fin while3
                                     Pokemon notPikachu = new Pokemon(especie, moves);
                                     listaE.get(trainerC).getEquipo()[cont] = notPikachu;
