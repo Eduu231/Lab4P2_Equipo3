@@ -75,6 +75,7 @@ public class Lab4P2_Equipo3 {
                                         printMoves();
                                         int opcionMoves = read.nextInt();
                                         moves[cont] = movesA.get(opcionMoves);
+                                        cont++;
                                         
                                         
                                     }//fin while3
