@@ -1,8 +1,8 @@
 
 package lab4p2_equipo3;
-
+import java.util.Random;
 public class Pokemon {
-    
+    static Random rng = new Random();
     private String especie;
     private int nivel;
     private int puntosExp;
@@ -12,22 +12,30 @@ public class Pokemon {
     private int defensa;
     private int especial;
     private double velocidad;
-    private Estado e;
+    private String estado;
     private Movimiento [] m;
 
-    public Pokemon(String especie, int nivel, int puntosExp, int puntosNecesarios, int ptsVida, int ptsAtaq, int defensa, int especial, double velocidad, Estado e, Movimiento[] m) {
-        this.especie = especie;
-        this.nivel = nivel;
-        this.puntosExp = puntosExp;
-        this.puntosNecesarios = puntosNecesarios;
-        this.ptsVida = ptsVida;
-        this.ptsAtaq = ptsAtaq;
-        this.defensa = defensa;
-        this.especial = especial;
-        this.velocidad = velocidad;
-        this.e = e;
-        this.m = m;
+    public Pokemon(){
+        
     }
+    
+    public Pokemon(String especie, Movimiento[] m) {
+        this.especie = especie;
+        this.m = m;
+        this.nivel = 1+rng.nextInt(99);
+        this.puntosExp = 0;
+        this.puntosNecesarios = 1000 +rng.nextInt(4000);
+        this.ptsVida = 50 + rng.nextInt(150);
+        this.ptsAtaq = rng.nextInt(100);
+        this.defensa = rng.nextInt(100);
+        this.especial = rng.nextInt(100);
+        this.velocidad = rng.nextInt(100);
+        this.estado = "";
+        
+        
+    }
+
+    
 
     public String getEspecie() {
         return especie;
@@ -101,12 +109,12 @@ public class Pokemon {
         this.velocidad = velocidad;
     }
 
-    public Estado getE() {
-        return e;
+    public String getE() {
+        return estado;
     }
 
-    public void setE(Estado e) {
-        this.e = e;
+    public void setE(String e) {
+        this.estado= e;
     }
 
     public Movimiento[] getM() {
@@ -119,7 +127,7 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" + "especie=" + especie + ", nivel=" + nivel + ", puntosExp=" + puntosExp + ", puntosNecesarios=" + puntosNecesarios + ", ptsVida=" + ptsVida + ", ptsAtaq=" + ptsAtaq + ", defensa=" + defensa + ", especial=" + especial + ", velocidad=" + velocidad + ", e=" + e + ", m=" + m + '}';
+        return "Pokemon{" + "especie=" + especie + ", nivel=" + nivel + ", puntosExp=" + puntosExp + ", puntosNecesarios=" + puntosNecesarios + ", ptsVida=" + ptsVida + ", ptsAtaq=" + ptsAtaq + ", defensa=" + defensa + ", especial=" + especial + ", velocidad=" + velocidad + ", e=" + estado + ", m=" + m + '}';
     }
 
     
