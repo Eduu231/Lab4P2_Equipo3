@@ -7,6 +7,12 @@ public class Pokemon {
     private int nivel;
     private int puntosExp;
     private int puntosNecesarios;
+    private int ptsVida;
+    private int ptsAtaq;
+    private int defensa;
+    private int especial;
+    private double velocidad;
+    
     
     
     
