@@ -3,18 +3,19 @@ package lab4p2_equipo3;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
-import java.util.Set;
 
 public class Lab4P2_Equipo3 {
 
     static Random rng = new Random();
     static Scanner read = new Scanner(System.in);
+    static ArrayList<Entrenador> listaE = new ArrayList();
 
     public static void main(String[] args) {
-        ArrayList caja = new ArrayList();
-        ArrayList listaE = new ArrayList();
+        //ArrayList caja = new ArrayList();
+        
         ArrayList pA = new ArrayList();
         
+
         int opcion = 0;
 
         while (opcion != 4) {
@@ -23,7 +24,7 @@ public class Lab4P2_Equipo3 {
 
             switch (opcion) {
                 case 1: {
-                    
+
                     read.nextLine();
                     System.out.println("Ingrese el nombre: ");
                     String nombre = read.nextLine();
@@ -32,87 +33,10 @@ public class Lab4P2_Equipo3 {
                     System.out.println("Ingrese el dinero de su cuenta: ");
                     Double dinero = read.nextDouble();
                     Pokemon[] p = new Pokemon[6];
-                    
-                    if(cont2 < 6){
-                    read.nextLine();
-                    System.out.println("Ingresar sus 6 pokemones: ");
-
-                    System.out.println("Ingrese su especie: ");
-                    String especie = read.nextLine();
-                    
-                    int cont = 0;
-                    while (cont < 3) {
-                        System.out.println("""
-                                                       Ingrese su tipo de ataque
-                                                       1. Fisico/Especial
-                                                       2. Estado""");
-                        int opcion3 = read.nextInt();
-                        Movimiento[] moves = new Movimiento[4];
-                        switch (opcion3) {
-                            case 1: {
-                                read.nextLine();
-                                System.out.println("Ingrese un ataque fisico o especial: ");
-                                String ataque = read.nextLine();
-                                int stat = 1 + rng.nextInt(50);
-                                FisicoEspecial move = new FisicoEspecial(stat, ataque);
-                                moves[cont] = move;
-                                break;
-                            }
-                            case 2: {
-                                int opcion4 = 0;
-
-                                opcion4 = menuEstado();
-                                switch (opcion4) {
-                                    case 1: {
-
-                                        Estado move = new Estado("Toxic");
-                                        moves[cont] = move;
-
-                                        break;
-                                    }
-                                    case 2: {
-
-                                        Estado move = new Estado("Will-O-Wisp");
-                                        moves[cont] = move;
-
-                                        break;
-                                    }
-                                    case 3: {
-
-                                        Estado move = new Estado("Thunder Wave");
-                                        moves[cont] = move;
-
-                                        break;
-                                    }
-                                    case 4: {
-
-                                        Estado move = new Estado("Hypnosis");
-                                        moves[cont] = move;
-
-                                        break;
-                                    }
-                                    default: {
-
-                                        System.out.println("Ingreso un valor no valido");
-
-                                    }
-                                }
-
-                                break;
-                            }
-                        }
-                        cont++;
-                        pA.add(new Pokemon(especie, moves));
-                        cont2++;
-                    }
-                    
-                    }else{
-                        caja.add(new Pokemon(nombre, moves));
-                    }
-//fin while pokemon
+                    ArrayList<Pokemon> caja = new ArrayList();
 
                     listaE.add(new Entrenador(nombre, edad, dinero, p, caja));
-                    
+
                     break;
                 }
                 case 2: {
@@ -120,6 +44,108 @@ public class Lab4P2_Equipo3 {
                     break;
                 }
                 case 3: {
+                    if(!listaE.isEmpty()){
+                        System.out.println("Ingrese el entrenador que desea ingresar a esta opcion");
+
+
+                        System.out.println("""
+                                           Que desea hacer?
+                                           1. Capturar Pokemon
+                                           2. Entrenar Pokemon""");
+                        int opcionCatch = read.nextInt();
+
+                        switch (opcionCatch) {
+
+                            case 1: {
+
+
+
+                                if (cont2 < 6) {
+                                    read.nextLine();
+                                    System.out.println("Ingresar sus 6 pokemones: ");
+
+                                    System.out.println("Ingrese su especie: ");
+                                    String especie = read.nextLine();
+
+                                    int cont = 0;
+                                    while (cont < 3) {
+                                        System.out.println("""
+                                                           Ingrese su tipo de ataque
+                                                           1. Fisico/Especial
+                                                           2. Estado""");
+                                        int opcion3 = read.nextInt();
+                                        Movimiento[] moves = new Movimiento[4];
+                                        switch (opcion3) {
+                                            case 1: {
+                                                read.nextLine();
+                                                System.out.println("Ingrese un ataque fisico o especial: ");
+                                                String ataque = read.nextLine();
+                                                int stat = 1 + rng.nextInt(50);
+                                                FisicoEspecial move = new FisicoEspecial(stat, ataque);
+                                                moves[cont] = move;
+                                                break;
+                                            }
+                                            case 2: {
+                                                int opcion4 = 0;
+
+                                                opcion4 = menuEstado();
+                                                switch (opcion4) {
+                                                    case 1: {
+
+                                                        Estado move = new Estado("Toxic");
+                                                        moves[cont] = move;
+
+                                                        break;
+                                                    }
+                                                    case 2: {
+
+                                                        Estado move = new Estado("Will-O-Wisp");
+                                                        moves[cont] = move;
+
+                                                        break;
+                                                    }
+                                                    case 3: {
+
+                                                        Estado move = new Estado("Thunder Wave");
+                                                        moves[cont] = move;
+
+                                                        break;
+                                                    }
+                                                    case 4: {
+
+                                                        Estado move = new Estado("Hypnosis");
+                                                        moves[cont] = move;
+
+                                                        break;
+                                                    }
+                                                    default: {
+
+                                                        System.out.println("Ingreso un valor no valido");
+
+                                                    }
+                                                }//fin switch status moves
+
+                                                break;
+                                            }//fin 
+                                        }
+                                        Pokemon notPikachu = new Pokemon(especie, moves);
+
+                                        cont++;
+                                        pA.add(new Pokemon(especie, moves));
+                                        cont2++;
+                                    }
+
+                                }
+                            }
+                        
+                        break;
+
+                        case 2: {
+
+                        }
+                        break;
+
+                    }
 
                     break;
                 }
@@ -189,6 +215,19 @@ public class Lab4P2_Equipo3 {
         op = read.nextInt();
 
         return op;
+    }
+    
+    static void printE(){
+        
+        String acum = "";
+        
+        for (Entrenador trainer : listaE) {
+            
+            acum+= listaE.indexOf(trainer)+"- "+trainer.getNombre()+"\n";
+            
+        }
+        System.out.println(acum);
+        
     }
 
 }
