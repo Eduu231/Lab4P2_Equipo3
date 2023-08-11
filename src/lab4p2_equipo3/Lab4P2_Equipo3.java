@@ -113,9 +113,11 @@ public class Lab4P2_Equipo3 {
                                                Ingrese su tipo de ataque:
                                                1- Fisico
                                                2- Especial""");
-                            String ataque = read.nextLine();
+                            
                             int stat = 1 + rng.nextInt(50);
                             int opcionFE = read.nextInt();
+                            System.out.println("Ingrese el nombre del ataque");
+                            String ataque = read.nextLine();
                             switch(opcionFE){
                                 
                                 case 1 : {
@@ -182,9 +184,7 @@ public class Lab4P2_Equipo3 {
                             break;
                         }//fin case special moves
                     }//fin switch opcion 3
-                    
                 }
-                
                 break;
                 
                 case 5: {
