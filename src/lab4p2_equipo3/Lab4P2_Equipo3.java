@@ -68,10 +68,19 @@ public class Lab4P2_Equipo3 {
                                     String especie = read.nextLine();
 
                                     int cont = 0;
-                                    while (cont < 3) {
-
+                                    Movimiento[] moves = new Movimiento [4];
+                                    while (cont < 4) {
+                                        
+                                        System.out.println("Seleccione 4 movimientos");
+                                        
+                                        
+                                        break;
                                     }//fin while3
-
+                                    Pokemon notPikachu = new Pokemon(especie, moves);
+                                    listaE.get(trainerC).getEquipo()[cont] = notPikachu;
+                                    cont++;
+                                    pA.add(new Pokemon(especie, moves));
+                                    cont2++;
                                 }//fin cont 2 if
                             }//fin case 1
 
@@ -97,10 +106,34 @@ public class Lab4P2_Equipo3 {
                     switch (opcion3) {
                         case 1: {
                             read.nextLine();
-                            System.out.println("Ingrese un ataque fisico o especial: ");
+                            System.out.println("""
+                                               Ingrese su tipo de ataque:
+                                               1- Fisico
+                                               2- Especial""");
                             String ataque = read.nextLine();
                             int stat = 1 + rng.nextInt(50);
-                            FisicoEspecial move = new FisicoEspecial(stat, ataque);
+                            int opcionFE = read.nextInt();
+                            switch(opcionFE){
+                                
+                                case 1 : {
+                                    
+                                    Fisico f = new Fisico(stat , ataque);
+                                    movesA.add(f);
+                                    
+                                    
+                                }
+                                break;
+                                
+                                case 2 : {
+                                    
+                                    int specialAtk =100 + rng.nextInt(400);
+                                    Especial e = new Especial(specialAtk, stat, ataque);
+                                    
+                                }//fin case 2
+                                break;
+                                
+                            }
+                            
                             break;
                         }
                         case 2: {
@@ -146,15 +179,11 @@ public class Lab4P2_Equipo3 {
                             break;
                         }//fin case special moves
                     }//fin switch opcion 3
-                    Pokemon notPikachu = new Pokemon(especie, moves);
-
-                    listaE.get(trainerC).getEquipo()[cont] = notPikachu;
-                    cont++;
-                    pA.add(new Pokemon(especie, moves));
-                    cont2++;
-
-                    break;
+                    
                 }
+                
+                break;
+                
                 case 5: {
                     System.out.println("Salir");
                     break;
@@ -230,6 +259,17 @@ public class Lab4P2_Equipo3 {
         }
         System.out.println(acum);
 
+    }
+    static void printMoves(){
+        
+        String acum = "";
+        for (Movimiento move : movesA) {
+            
+            acum+=movesA.indexOf(move)+"- "+move.getNombre()+"\n";
+            
+        }
+        System.out.println(acum);
+        
     }
 
 }
