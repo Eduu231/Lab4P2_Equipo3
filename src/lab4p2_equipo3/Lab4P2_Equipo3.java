@@ -29,7 +29,11 @@ public class Lab4P2_Equipo3 {
                 break;
             }
             case 4:{
-                System.out.println("Salir");
+               
+                break;
+            }
+            case 5:{
+                 System.out.println("Salir");
                 break;
             }
         }
@@ -45,7 +49,8 @@ public class Lab4P2_Equipo3 {
                            1- Registrar Entrenador
                            2- Battle Factory
                            3- Capturar/Entrenar
-                           4- Salir
+                           4- Añadir Movimientos
+                           5- Salir
                            """);
         
         op = read.nextInt();
