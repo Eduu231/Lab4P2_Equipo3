@@ -10,7 +10,7 @@ public class Entrenador {
     private int edad;
     private double dinero;
     private Pokemon [] equipo ;
-    private ArrayList caja;
+    private ArrayList<Pokemon> caja;
 
     public Entrenador(String nombre, int edad, double dinero, Pokemon [] equipo, ArrayList caja) {
         this.nombre = nombre;
@@ -52,7 +52,7 @@ public class Entrenador {
         this.equipo = equipo;
     }
 
-    public ArrayList getCaja() {
+    public ArrayList<Pokemon> getCaja() {
         return caja;
     }
 

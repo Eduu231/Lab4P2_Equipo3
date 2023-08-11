@@ -91,6 +91,54 @@ public class Lab4P2_Equipo3 {
 
                             case 2: {
 
+                                System.out.println("Ha ingresado a la opcion de entrenar pokemon");
+                                System.out.println("""
+                                                   En donde se ubica el pokemon que desea entrenar: 
+                                                   1. Equipo
+                                                   2. Caja""");
+                                int entrenar = read.nextInt();
+                                Pokemon x;
+                                int option;
+                                if (entrenar == 1){
+                                    
+                                    printPokemon(listaE.get(trainerC) , entrenar);
+                                         option = read.nextInt();
+                                        x = listaE.get(trainerC).getEquipo()[option];
+                                    
+                                }
+                                else{
+                                    
+                                    printPokemon(listaE.get(trainerC) , entrenar);
+                                         option = read.nextInt();
+                                        x = listaE.get(trainerC).getCaja().get(option);
+                                    
+                                }
+                                
+                                int multiplier = 1 + rng.nextInt(1);
+                                int expBottle = 100+rng.nextInt(4899);
+                                int expTotal = expBottle*multiplier;
+                                x.setPuntosExp(expTotal+x.getPuntosExp());
+                                if(expTotal+x.getPuntosExp()>=x.getPuntosNecesarios()){
+
+                                    x.setNivel(x.getNivel() +1);
+
+                                }
+                                else{
+                                    x.setPuntosNecesarios(x.getPuntosNecesarios()-expTotal);
+                                }
+                                
+                                if( entrenar == 1){
+                                    
+                                    listaE.get(trainerC).getEquipo()[option] = x;
+                                    
+                                }
+                                else{
+                                    
+                                    listaE.get(trainerC).getCaja().add(option, x);
+                                    listaE.get(trainerC).getCaja().remove(option+1);
+                                    
+                                }
+                                
                             }
                             break;
 
@@ -108,7 +156,6 @@ public class Lab4P2_Equipo3 {
                     Movimiento[] moves = new Movimiento[4];
                     switch (opcion3) {
                         case 1: {
-                            read.nextLine();
                             System.out.println("""
                                                Ingrese su tipo de ataque:
                                                1- Fisico
@@ -116,6 +163,7 @@ public class Lab4P2_Equipo3 {
                             
                             int stat = 1 + rng.nextInt(50);
                             int opcionFE = read.nextInt();
+                            read.nextLine();
                             System.out.println("Ingrese el nombre del ataque");
                             String ataque = read.nextLine();
                             switch(opcionFE){
@@ -271,6 +319,31 @@ public class Lab4P2_Equipo3 {
             acum+=movesA.indexOf(move)+"- "+move.getNombre()+"\n";
             
         }
+        System.out.println(acum);
+        
+    }
+    
+    static void printPokemon(Entrenador Ash, int opcion){
+        
+        String acum = "";
+        if(opcion == 1){
+            for (int i = 0; i < Ash.getEquipo().length; i++) {
+            
+            acum+= i+"- "+Ash.getEquipo()[i].getEspecie();
+            
+            }
+        }
+        else{
+            
+            for (Pokemon pikachunt : Ash.getCaja()) {
+                
+                acum+=Ash.getCaja().indexOf(pikachunt)+"- "+pikachunt.getEspecie()+"\n";
+                
+            }
+            
+        }
+        
+        
         System.out.println(acum);
         
     }
