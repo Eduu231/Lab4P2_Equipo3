@@ -1,8 +1,9 @@
 
 package lab4p2_equipo3;
 
-public class FisicoEspecial {
+public class FisicoEspecial extends Movimiento{
     
+    private int baseAtk;
     
     
 }

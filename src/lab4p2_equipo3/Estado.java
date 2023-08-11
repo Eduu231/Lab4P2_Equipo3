@@ -38,6 +38,36 @@ public class Estado extends Movimiento {
             
         }
         
+        if(m.getNombre().equalsIgnoreCase("Will-O-Wisp")){
+            
+            if(random>= 1 && random <= 75){
+                
+                efecto = "Quemado";
+                
+            }
+            
+        }
+        
+        if(m.getNombre().equalsIgnoreCase("Thunder Wave")){
+            
+            if(random>= 1 && random <= 75){
+                
+                efecto = "Paralizado";
+                
+            }
+            
+        }
+        
+        if(m.getNombre().equalsIgnoreCase("Hypnosis")){
+            
+            if(random>= 1 && random <= 75){
+                
+                efecto = "Dormido";
+                
+            }
+            
+        }
+        
         return efecto;
         
     }
