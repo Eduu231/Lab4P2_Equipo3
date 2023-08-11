@@ -1,14 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package lab4p2_equipo3;
 
-/**
- *
- * @author jets
- */
-public class Estado {
+import java.util.Random;
+
+public class Estado extends Movimiento {
     
-    private int lmao;
+    
+    
+    private int RNGesus;
+
+    public Estado(int RNGesus, String nombre) {
+        super(nombre);
+        this.RNGesus = RNGesus;
+    }
+
+    public int getRNGesus() {
+        return RNGesus;
+    }
+
+    public void setRNGesus(int RNGesus) {
+        this.RNGesus = RNGesus;
+    }
+    
+    @Override
+    public String accion(Pokemon p, Estado e){
+        
+        Random rng = new Random();
+        String efecto = "";
+        if(e.getNombre().equalsIgnoreCase("Toxic")){
+            
+            
+            
+        }
+        
+        return efecto;
+        
+    }
+    
 }
