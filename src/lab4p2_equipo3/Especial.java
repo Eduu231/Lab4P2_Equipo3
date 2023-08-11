@@ -11,10 +11,18 @@ public class Especial extends FisicoEspecial{
 
     @Override
     public String accion(Pokemon p, int move) {
-         int atq = ((FisicoEspecial) p.getM()[move]).getBaseAtk();
-         int atqE = ((FisicoEspecial) p.getM()[move]).getAtkE();
+        String dmg = "";
+         int atq = ((FisicoEspecial) p.getM()[move]).getBaseAtk();//random1
+         int atqE = ((FisicoEspecial) p.getM()[move]).getAtkE();//random2
          
-         int atqT = 
+         int atqT = atq + atqE;
+         if (atqT == atqE){
+             atq = atqE;
+             dmg += atq;
+         }else{
+             dmg += atq;
+         }
+         return dmg;
     }
     
 }

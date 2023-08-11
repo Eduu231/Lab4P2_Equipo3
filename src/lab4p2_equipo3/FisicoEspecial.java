@@ -6,6 +6,12 @@ public abstract class FisicoEspecial extends Movimiento{
     private int baseAtk;
     private int AtkE;
 
+    public FisicoEspecial(int baseAtk, String nombre) {
+        super(nombre);
+        this.baseAtk = baseAtk;
+    }
+
+   
     public FisicoEspecial(int AtkE, int baseAtk, String nombre) {
         super(nombre);
         this.baseAtk = baseAtk;

@@ -6,6 +6,8 @@ public class Fisico extends FisicoEspecial {
         super(AtkE, baseAtk, nombre);
     }
 
+   
+
     
 
     @Override
