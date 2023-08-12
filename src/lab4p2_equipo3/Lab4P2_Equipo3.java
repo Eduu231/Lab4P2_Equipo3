@@ -40,8 +40,58 @@ public class Lab4P2_Equipo3 {
                     break;
                 }
                 case 2: {
+                    Entrenador e1, e2;
 
                     System.out.println("You're a Pokémon trainer, right? So am I <Inicia Batalla>");
+                    printE();
+                    System.out.println("Seleccione 1 entrenador");
+                    int posE1 = read.nextInt();
+
+                    System.out.println("Seleccione 1 entrenador");
+
+                    int posE2 = read.nextInt();
+                    if (posE2 > 0 && posE2 < listaE.size()) {
+
+                        e1 = listaE.get(posE1);
+                        System.out.println("Eliga el pokemon a batalla: ");
+                        printPokemon(e1, 1);
+                        int eleccion = read.nextInt();
+                        Pokemon p1 = e1.getEquipo()[eleccion];
+
+                        e2 = listaE.get(posE2);
+                        System.out.println("Eliga el pokemon a batalla: ");
+                        printPokemon(e2, 1);
+                        int eleccion2 = read.nextInt();
+                        Pokemon p2 = e2.getEquipo()[eleccion2];
+
+                        while (p1.getPtsVida() != 0 || p2.getPtsVida() != 0) {
+
+                            System.out.println("Entrenador 1 elegir ataque de su pokemon: ");
+                            menuAtaq(p1);
+                            int ataqueE1 = read.nextInt();
+                            System.out.println("Entrenador 2 elegir ataque de su pokemon: ");
+                            menuAtaq(p2);
+                            int ataqueE2 = read.nextInt();
+
+                            if (p1.getVelocidad() > p2.getVelocidad()) {
+                                p1.getM()[ataqueE1].accion(p1, ataqueE1);
+                                if (p1.getM()[ataqueE1] instanceof Estado) {
+                                    p2.setE(((Estado) p1.getM()[ataqueE1]).accion(p1, ataqueE1));
+                                } else if (p1.getM()[ataqueE1] instanceof Fisico) {
+                                    if (p1.getPtsAtaq() > p2.getPtsAtaq()) {
+                                        p2.setPtsVida(p2.getPtsVida() - Integer.parseInt(((Fisico) p1.getM()[ataqueE1]).accion(p1, ataqueE1)));
+                                    } else {
+                                        p2.setPtsVida(p2.getPtsVida() - Integer.parseInt(((Fisico) p1.getM()[ataqueE1]).accion(p1, ataqueE1)) / 4);
+                                    }
+                                }
+                            } else {
+
+                            }
+                        }
+
+                    } else {
+                        System.out.println("Indice fuera de rango");
+                    }
 
                     break;
                 }
@@ -60,6 +110,7 @@ public class Lab4P2_Equipo3 {
 
                             case 1: {
 
+                                Movimiento[] moves = new Movimiento[4];
                                 if (cont2 < 6) {
                                     read.nextLine();
                                     System.out.println("Ingresar sus 6 pokemones: ");
@@ -68,19 +119,18 @@ public class Lab4P2_Equipo3 {
                                     String especie = read.nextLine();
 
                                     int cont = 0;
-                                    Movimiento[] moves = new Movimiento [4];
                                     while (cont < 4) {
-                                        
+
                                         System.out.println("Seleccione 4 movimientos");
                                         printMoves();
                                         int opcionMoves = read.nextInt();
                                         moves[cont] = movesA.get(opcionMoves);
                                         cont++;
-                                        
-                                        
+
+                                        Pokemon notPikachu = new Pokemon(especie, moves);
+                                        listaE.get(trainerC).getEquipo()[cont2] = notPikachu;
                                     }//fin while3
-                                    Pokemon notPikachu = new Pokemon(especie, moves);
-                                    listaE.get(trainerC).getEquipo()[cont] = notPikachu;
+
                                     cont++;
                                     pA.add(new Pokemon(especie, moves));
                                     cont2++;
@@ -99,46 +149,43 @@ public class Lab4P2_Equipo3 {
                                 int entrenar = read.nextInt();
                                 Pokemon x;
                                 int option;
-                                if (entrenar == 1){
-                                    
-                                    printPokemon(listaE.get(trainerC) , entrenar);
-                                         option = read.nextInt();
-                                        x = listaE.get(trainerC).getEquipo()[option];
-                                    
+                                if (entrenar == 1) {
+
+                                    printPokemon(listaE.get(trainerC), entrenar);
+                                    option = read.nextInt();
+                                    x = listaE.get(trainerC).getEquipo()[option];
+
+                                } else {
+
+                                    printPokemon(listaE.get(trainerC), entrenar);
+                                    option = read.nextInt();
+                                    x = listaE.get(trainerC).getCaja().get(option);
+
                                 }
-                                else{
-                                    
-                                    printPokemon(listaE.get(trainerC) , entrenar);
-                                         option = read.nextInt();
-                                        x = listaE.get(trainerC).getCaja().get(option);
-                                    
-                                }
-                                
+
                                 int multiplier = 1 + rng.nextInt(1);
-                                int expBottle = 100+rng.nextInt(4899);
-                                int expTotal = expBottle*multiplier;
-                                x.setPuntosExp(expTotal+x.getPuntosExp());
-                                if(expTotal+x.getPuntosExp()>=x.getPuntosNecesarios()){
+                                int expBottle = 100 + rng.nextInt(4899);
+                                int expTotal = expBottle * multiplier;
+                                x.setPuntosExp(expTotal + x.getPuntosExp());
+                                if (expTotal + x.getPuntosExp() >= x.getPuntosNecesarios()) {
 
-                                    x.setNivel(x.getNivel() +1);
+                                    x.setNivel(x.getNivel() + 1);
 
+                                } else {
+                                    x.setPuntosNecesarios(x.getPuntosNecesarios() - expTotal);
                                 }
-                                else{
-                                    x.setPuntosNecesarios(x.getPuntosNecesarios()-expTotal);
-                                }
-                                
-                                if( entrenar == 1){
-                                    
+
+                                if (entrenar == 1) {
+
                                     listaE.get(trainerC).getEquipo()[option] = x;
-                                    
-                                }
-                                else{
-                                    
+
+                                } else {
+
                                     listaE.get(trainerC).getCaja().add(option, x);
-                                    listaE.get(trainerC).getCaja().remove(option+1);
-                                    
+                                    listaE.get(trainerC).getCaja().remove(option + 1);
+
                                 }
-                                
+
                             }
                             break;
 
@@ -160,33 +207,32 @@ public class Lab4P2_Equipo3 {
                                                Ingrese su tipo de ataque:
                                                1- Fisico
                                                2- Especial""");
-                            
+
                             int stat = 1 + rng.nextInt(50);
                             int opcionFE = read.nextInt();
                             read.nextLine();
                             System.out.println("Ingrese el nombre del ataque");
                             String ataque = read.nextLine();
-                            switch(opcionFE){
-                                
-                                case 1 : {
-                                    
-                                    Fisico f = new Fisico(stat , ataque);
+                            switch (opcionFE) {
+
+                                case 1: {
+
+                                    Fisico f = new Fisico(stat, ataque);
                                     movesA.add(f);
-                                    
-                                    
+
                                 }
                                 break;
-                                
-                                case 2 : {
-                                    
-                                    int specialAtk =100 + rng.nextInt(400);
+
+                                case 2: {
+
+                                    int specialAtk = 100 + rng.nextInt(400);
                                     Especial e = new Especial(specialAtk, stat, ataque);
-                                    
+
                                 }//fin case 2
                                 break;
-                                
+
                             }
-                            
+
                             break;
                         }
                         case 2: {
@@ -234,13 +280,23 @@ public class Lab4P2_Equipo3 {
                     }//fin switch opcion 3
                 }
                 break;
-                
+
                 case 5: {
                     System.out.println("Salir");
                     break;
                 }
             }
         }
+
+    }
+
+    private static void menuAtaq(Pokemon p) {
+        int op = 0;
+
+        for (int i = 0; i < p.getM().length; i++) {
+            System.out.print("[" + p.getM()[i].getNombre() + "]");
+        }
+        System.out.println("");
 
     }
 
@@ -311,41 +367,40 @@ public class Lab4P2_Equipo3 {
         System.out.println(acum);
 
     }
-    static void printMoves(){
-        
+
+    static void printMoves() {
+
         String acum = "";
         for (Movimiento move : movesA) {
-            
-            acum+=movesA.indexOf(move)+"- "+move.getNombre()+"\n";
-            
+
+            acum += movesA.indexOf(move) + "- " + move.getNombre() + "\n";
+
         }
         System.out.println(acum);
-        
+
     }
-    
-    static void printPokemon(Entrenador Ash, int opcion){
-        
+
+    static void printPokemon(Entrenador Ash, int opcion) {
+
         String acum = "";
-        if(opcion == 1){
+        if (opcion == 1) {
             for (int i = 0; i < Ash.getEquipo().length; i++) {
-            
-            acum+= i+"- "+Ash.getEquipo()[i].getEspecie();
-            
+
+                acum += i + "- " + Ash.getEquipo()[i].getEspecie();
+
             }
-        }
-        else{
-            
+        } else {
+
             for (Pokemon pikachunt : Ash.getCaja()) {
-                
-                acum+=Ash.getCaja().indexOf(pikachunt)+"- "+pikachunt.getEspecie()+"\n";
-                
+
+                acum += Ash.getCaja().indexOf(pikachunt) + "- " + pikachunt.getEspecie() + "\n";
+
             }
-            
+
         }
-        
-        
+
         System.out.println(acum);
-        
+
     }
 
 }

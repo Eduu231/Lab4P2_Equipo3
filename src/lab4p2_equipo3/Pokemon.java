@@ -127,7 +127,7 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" + "especie=" + especie + ", nivel=" + nivel + ", puntosExp=" + puntosExp + ", puntosNecesarios=" + puntosNecesarios + ", ptsVida=" + ptsVida + ", ptsAtaq=" + ptsAtaq + ", defensa=" + defensa + ", especial=" + especial + ", velocidad=" + velocidad + ", e=" + estado + ", m=" + m + '}';
+        return "Pokemon" + "\n" +"especie: " + especie + "\n" +"nivel: " + nivel + "\n" +"puntosExp: " + puntosExp + "\n" +"puntosNecesarios: " + puntosNecesarios + "\n" +"ptsVida: " + ptsVida + "\n" +"ptsAtaq: " + ptsAtaq + "\n" +"defensa: " + defensa + "\n" + "especial: " + especial + "\n" +"velocidad: " + velocidad + "\n" +"e: " + estado + "\n" +"m: " + m + "\n" ;
     }
 
     
