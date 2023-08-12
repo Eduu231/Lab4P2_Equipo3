@@ -54,17 +54,17 @@ public class Lab4P2_Equipo3 {
 
                         e1 = listaE.get(posE1);
                         System.out.println("Eliga el pokemon a batalla: ");
-                        printPokemon(e1, 1);
+                        //printPokemon(e1, 1);
                         int eleccion = read.nextInt();
                         Pokemon p1 = e1.getEquipo()[eleccion];
 
                         e2 = listaE.get(posE2);
                         System.out.println("Eliga el pokemon a batalla: ");
-                        printPokemon(e2, 1);
+                        //printPokemon(e2, 1);
                         int eleccion2 = read.nextInt();
                         Pokemon p2 = e2.getEquipo()[eleccion2];
 
-                        while (p1.getPtsVida() != 0 || p2.getPtsVida() != 0) {
+                        while (p1.getPtsVida() >= 0 || p2.getPtsVida() >= 0) {
 
                             System.out.println("Entrenador 1 elegir ataque de su pokemon: ");
                             menuAtaq(p1);
@@ -84,13 +84,47 @@ public class Lab4P2_Equipo3 {
                                         p2.setPtsVida(p2.getPtsVida() - Integer.parseInt(((Fisico) p1.getM()[ataqueE1]).accion(p1, ataqueE1)) / 4);
                                     }
                                 }
+                                p2.getM()[ataqueE2].accion(p2, ataqueE2);
+                                if (p2.getM()[ataqueE2] instanceof Estado) {
+                                    p1.setE(((Estado) p2.getM()[ataqueE2]).accion(p2, ataqueE2));
+                                } else if (p2.getM()[ataqueE2] instanceof Fisico) {
+                                    if (p2.getPtsAtaq() > p1.getPtsAtaq()) {
+                                        p1.setPtsVida(p1.getPtsVida() - Integer.parseInt(((Fisico) p2.getM()[ataqueE1]).accion(p2, ataqueE1)));
+                                    } else {
+                                        p1.setPtsVida(p1.getPtsVida() - Integer.parseInt(((Fisico) p2.getM()[ataqueE2]).accion(p2, ataqueE2)) / 4);
+                                    }
+                                }
                             } else {
-
+                                p1.getM()[ataqueE1].accion(p1, ataqueE1);
+                                if (p1.getM()[ataqueE1] instanceof Estado) {
+                                    p2.setE(((Estado) p1.getM()[ataqueE1]).accion(p1, ataqueE1));
+                                } else if (p1.getM()[ataqueE1] instanceof Fisico) {
+                                    if (p1.getPtsAtaq() > p2.getPtsAtaq()) {
+                                        p2.setPtsVida(p2.getPtsVida() - Integer.parseInt(((Fisico) p1.getM()[ataqueE1]).accion(p1, ataqueE1)));
+                                    } else {
+                                        p2.setPtsVida(p2.getPtsVida() - Integer.parseInt(((Fisico) p1.getM()[ataqueE1]).accion(p1, ataqueE1)) / 4);
+                                    }
+                                }
+                                p2.getM()[ataqueE2].accion(p2, ataqueE2);
+                                if (p2.getM()[ataqueE2] instanceof Estado) {
+                                    p1.setE(((Estado) p2.getM()[ataqueE2]).accion(p2, ataqueE2));
+                                } else if (p2.getM()[ataqueE2] instanceof Fisico) {
+                                    if (p2.getPtsAtaq() > p1.getPtsAtaq()) {
+                                        p1.setPtsVida(p1.getPtsVida() - Integer.parseInt(((Fisico) p2.getM()[ataqueE1]).accion(p2, ataqueE1)));
+                                    } else {
+                                        p1.setPtsVida(p1.getPtsVida() - Integer.parseInt(((Fisico) p2.getM()[ataqueE2]).accion(p2, ataqueE2)) / 4);
+                                    }
+                                }
                             }
                         }
-
+                        if (p1.getPtsVida() > p2.getPtsVida()){
+                            System.out.println("Entrenador 1 ha ganado");
+                        }else{
+                            System.out.println("Entrenador 2 ha ganado");
+                        }
                     } else {
                         System.out.println("Indice fuera de rango");
+
                     }
 
                     break;
